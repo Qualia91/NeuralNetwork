@@ -1,8 +1,8 @@
-package com.nickolas.wood.neural_network.simple;
+package com.nick.wood.neural_network.simple;
+
+import com.nick.wood.neural_network.utils.Utils;
 
 import java.util.Random;
-
-import static com.nickolas.wood.neural_network.utils.Utils.*;
 
 public class NeuralNetworkSimple {
 
@@ -29,11 +29,11 @@ public class NeuralNetworkSimple {
 
             double[][] input_layer = trainingInputs;
 
-            double[] dotProdLayer = DotProd(input_layer, synapticWeights);
+            double[] dotProdLayer = Utils.DotProd(input_layer, synapticWeights);
 
             for (int outputLayerIndex = 0; outputLayerIndex < dotProdLayer.length; outputLayerIndex++) {
 
-                outputLayer[outputLayerIndex] = Sigmoid(dotProdLayer[outputLayerIndex], sigmoidDouble);
+                outputLayer[outputLayerIndex] = Utils.Sigmoid(dotProdLayer[outputLayerIndex], Utils.sigmoidDouble);
 
             }
 
@@ -41,12 +41,12 @@ public class NeuralNetworkSimple {
 
             for (int outputLayerIndex = 0; outputLayerIndex < outputLayer.length; outputLayerIndex++) {
 
-                adjustments[outputLayerIndex] = ErrorWeightedDerivative(
+                adjustments[outputLayerIndex] = Utils.ErrorWeightedDerivative(
                         outputLayer[outputLayerIndex], trainingOutputs[outputLayerIndex]);
 
             }
 
-            synapticWeights = VectorAdd(synapticWeights, DotProd(input_layer, adjustments));
+            synapticWeights = Utils.VectorAdd(synapticWeights, Utils.DotProd(input_layer, adjustments));
 
         }
 

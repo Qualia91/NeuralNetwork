@@ -1,8 +1,8 @@
-package com.nickolas.wood.neural_network;
+package com.nick.wood.neural_network;
 
-import com.nickolas.wood.neural_network.multi_layered.Network;
+import com.nick.wood.neural_network.multi_layered.Network;
 
-import static com.nickolas.wood.neural_network.utils.Utils.printVector;
+import static com.nick.wood.neural_network.utils.Utils.printVector;
 
 public class Main {
 

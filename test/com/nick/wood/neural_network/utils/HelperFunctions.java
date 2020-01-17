@@ -1,4 +1,4 @@
-package com.nickolas.wood.neural_network.utils;
+package com.nick.wood.neural_network.utils;
 
 import static org.junit.Assert.assertEquals;
 

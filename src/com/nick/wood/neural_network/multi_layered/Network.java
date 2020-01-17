@@ -1,10 +1,9 @@
-package com.nickolas.wood.neural_network.multi_layered;
+package com.nick.wood.neural_network.multi_layered;
 
-import com.nickolas.wood.neural_network.utils.Utils;
+import com.nick.wood.neural_network.utils.Utils;
 
+import java.util.Arrays;
 import java.util.Random;
-
-import static com.nickolas.wood.neural_network.utils.Utils.*;
 
 public class Network {
 
@@ -14,10 +13,10 @@ public class Network {
     private int[] sizes;
 
     // biases for each neuron in each layer
-    private double biases[][];
+    private double[][] biases;
 
     // weights for each line from neuron to neuron for each neuron in each layer
-    private double weights[][][];
+    private double[][][] weights;
 
     public Network() {
     }
@@ -38,17 +37,17 @@ public class Network {
 
         double[] currentLayerSigmoids = currentLayer;
 
-        allLayerData[0] = copy(currentLayer);
-        allLayerDataSigmoids[0] = copy(currentLayerSigmoids);
+        allLayerData[0] = Utils.copy(currentLayer);
+        allLayerDataSigmoids[0] = Utils.copy(currentLayerSigmoids);
 
         // feed forward
         for (int layerIndex = 0; layerIndex < this.sizes.length; layerIndex++) {
 
-            currentLayer = VectorAdd(calcNextFeedForward(currentLayerSigmoids, layerIndex), biases[layerIndex]);
-            currentLayerSigmoids = Sigmoid(currentLayer);
+            currentLayer = Utils.VectorAdd(calcNextFeedForward(currentLayerSigmoids, layerIndex), biases[layerIndex]);
+            currentLayerSigmoids = Utils.Sigmoid(currentLayer);
 
-            allLayerData[layerIndex + 1] = copy(currentLayer);
-            allLayerDataSigmoids[layerIndex + 1] = copy(currentLayerSigmoids);
+            allLayerData[layerIndex + 1] = Utils.copy(currentLayer);
+            allLayerDataSigmoids[layerIndex + 1] = Utils.copy(currentLayerSigmoids);
 
         }
 
@@ -60,26 +59,24 @@ public class Network {
 
     public double[] calcNextFeedForward(double[] inputLayer, int layerIndex) {
 
-        return Utils.DotProd(Transpose(weights[layerIndex]), inputLayer);
+        return Utils.DotProd(Utils.Transpose(weights[layerIndex]), inputLayer);
 
     }
 
     /**
      * Train neural network with input data
      *
-     * @param iterations
-     * @param trainingInputsArray
-     * @param trainingOutputsArray
-     * @param sizes
+     * @param iterations the number of iterations to run
+     * @param trainingInputsArray input training data
+     * @param trainingOutputsArray output training data
+     * @param sizes description of neural layers
      */
     public double[][] trainData(int iterations, double[][] trainingInputsArray, double[][] trainingOutputsArray, int[] sizes) {
 
         if (weights == null) {
 
             this.sizes = new int[sizes.length + 1];
-            for (int i = 0; i < sizes.length; i++) {
-                this.sizes[i] = sizes[i];
-            }
+            System.arraycopy(sizes, 0, this.sizes, 0, sizes.length);
             this.sizes[this.sizes.length - 1] = trainingOutputsArray[0].length;
 
             weights = new double[this.sizes.length][][];
@@ -134,28 +131,19 @@ public class Network {
             for (int hiddenLayerIndex = 0; hiddenLayerIndex < sizes.length; hiddenLayerIndex++) {
 
                 biases[hiddenLayerIndex] = new double[sizes[hiddenLayerIndex]];
-
-                for (int neuronIndex = 0; neuronIndex < biases[hiddenLayerIndex].length; neuronIndex++) {
-
-                    //biases[hiddenLayerIndex][neuronIndex] = (2 * rand.nextDouble()) - 1;
-                    biases[hiddenLayerIndex][neuronIndex] = 0.5;
-
-                }
+                //Arrays.fill(biases[hiddenLayerIndex], (2 * rand.nextDouble()) - 1);
+                Arrays.fill(biases[hiddenLayerIndex], 0.5);
 
             }
 
             // set biases for output layer
             biases[biases.length - 1] = new double[trainingOutputsArray[0].length];
-            for (int neuronIndex = 0; neuronIndex < biases[biases.length - 1].length; neuronIndex++) {
-
-                //biases[biases.length - 1][neuronIndex] = (2 * rand.nextDouble()) - 1;
-                biases[biases.length - 1][neuronIndex] = 0.5;
-
-            }
+            //Arrays.fill(biases[hiddenLayerIndex], (2 * rand.nextDouble()) - 1);
+            Arrays.fill(biases[biases.length - 1], 0.5);
 
         }
 
-        double[][] finalReturnedOutputs = copy(trainingOutputsArray);
+        double[][] finalReturnedOutputs = Utils.copy(trainingOutputsArray);
 
         for (int i = 0; i < iterations; i++) {
 
@@ -175,7 +163,7 @@ public class Network {
                 //double[] errors = getErrors(currentLayerSigmoids, trainingOutputs);
 
                 // back propagate error
-                double[][][] updatedWeights = copy(weights);
+                double[][][] updatedWeights = Utils.copy(weights);
 
                 double[] dEtbdoutYValues = new double[trainingOutputs.length];
                 double[] doutYbdYValues = new double[trainingOutputs.length];
@@ -225,7 +213,7 @@ public class Network {
 
                 weights = updatedWeights;
 
-                finalReturnedOutputs[trainingInputsIndex] = copy(allLayerDataSigmoids[allLayerDataSigmoids.length - 1]);
+                finalReturnedOutputs[trainingInputsIndex] = Utils.copy(allLayerDataSigmoids[allLayerDataSigmoids.length - 1]);
 
             }
 
@@ -251,7 +239,7 @@ public class Network {
 
     private double[][] findCost(double[][] layerData, double[][] layerDataSigmoids, double[][] trainingOutputs) {
 
-        return Utils.MatrixMultiply(Utils.Multiply(Subtract(trainingOutputs, layerDataSigmoids), -1), SigmoidDerivative(layerData));
+        return Utils.MatrixMultiply(Utils.Multiply(Utils.Subtract(trainingOutputs, layerDataSigmoids), -1), Utils.SigmoidDerivative(layerData));
 
     }
 

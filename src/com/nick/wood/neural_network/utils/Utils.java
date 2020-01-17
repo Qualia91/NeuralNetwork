@@ -1,4 +1,4 @@
-package com.nickolas.wood.neural_network.utils;
+package com.nick.wood.neural_network.utils;
 
 public class Utils {
 
@@ -307,9 +307,7 @@ public class Utils {
 
         double[] returnVector = new double[vector.length];
 
-        for (int row = 0; row < vector.length; row++) {
-            returnVector[row] = vector[row];
-        }
+        System.arraycopy(vector, 0, returnVector, 0, vector.length);
 
         return returnVector;
     }
@@ -348,8 +346,8 @@ public class Utils {
 
     public static void printVector(double[] data) {
         StringBuilder output = new StringBuilder("values: ");
-        for (int value = 0; value < data.length; value++) {
-            output.append(data[value]);
+        for (double datum : data) {
+            output.append(datum);
             output.append(" ");
         }
         System.out.println(output);

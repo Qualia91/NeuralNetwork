@@ -1,6 +1,6 @@
-package com.nickolas.wood.neural_network;
+package com.nick.wood.neural_network;
 
-import com.nickolas.wood.neural_network.simple.NeuralNetworkSimpleGeneral;
+import com.nick.wood.neural_network.simple.NeuralNetworkSimpleGeneral;
 
 public class NeuralNetworkSimpleGeneralTest {
 

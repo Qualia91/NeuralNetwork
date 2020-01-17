@@ -1,11 +1,9 @@
-package com.nickolas.wood.neural_network.multi_layered;
+package com.nick.wood.neural_network.multi_layered;
 
 import org.junit.Test;
 
 import java.util.Random;
 
-import static com.nickolas.wood.neural_network.utils.Utils.printMatrix;
-import static com.nickolas.wood.neural_network.utils.Utils.printVector;
 import static org.junit.Assert.*;
 
 public class NetworkTest {

@@ -1,10 +1,7 @@
-package com.nickolas.wood.neural_network.utils;
+package com.nick.wood.neural_network.utils;
 
 import org.junit.Test;
 
-import static com.nickolas.wood.neural_network.utils.HelperFunctions.MatrixAssert;
-import static com.nickolas.wood.neural_network.utils.HelperFunctions.VectorAssert;
-import static com.nickolas.wood.neural_network.utils.Utils.*;
 import static org.junit.Assert.*;
 
 public class UtilsTest {
@@ -12,7 +9,7 @@ public class UtilsTest {
     @Test
     public void sigmoidSingleDigitUnitTest() {
 
-        double returnValue = Sigmoid(1);
+        double returnValue = Utils.Sigmoid(1);
 
         double answer = 0.73105857863000487925115924182182;
 
@@ -23,7 +20,7 @@ public class UtilsTest {
     @Test
     public void sigmoidVectorUnitTest() {
 
-        double[] returnValue = Sigmoid(new double[]{1, 1, 1});
+        double[] returnValue = Utils.Sigmoid(new double[]{1, 1, 1});
 
         double[] answer = new double[] {0.73105857863000487925115924182182,
                 0.73105857863000487925115924182182,
@@ -52,9 +49,9 @@ public class UtilsTest {
                 {3.0, 6.0, 9.0}
         };
 
-        double[][] output = Transpose(input);
+        double[][] output = Utils.Transpose(input);
 
-        MatrixAssert(expected, output);
+        HelperFunctions.MatrixAssert(expected, output);
     }
 
     @Test
@@ -68,9 +65,9 @@ public class UtilsTest {
                 {3.0}
         };
 
-        double[][] output = Transpose(input);
+        double[][] output = Utils.Transpose(input);
 
-        MatrixAssert(expected, output);
+        HelperFunctions.MatrixAssert(expected, output);
     }
 
     @Test
@@ -80,9 +77,9 @@ public class UtilsTest {
         double[] input2 = new double[] {1.0, 2.0, 3.0};
         double[] expected = new double[] {2.0, 4.0, 6.0};
 
-        double[] output = VectorAdd(input1, input2);
+        double[] output = Utils.VectorAdd(input1, input2);
 
-        VectorAssert(expected, output);
+        HelperFunctions.VectorAssert(expected, output);
 
     }
 
@@ -107,9 +104,9 @@ public class UtilsTest {
                 {14.0, 16.0, 18.0}
         };
 
-        double[][] output = MatrixAdd(input1, input2);
+        double[][] output = Utils.MatrixAdd(input1, input2);
 
-        MatrixAssert(expected, output);
+        HelperFunctions.MatrixAssert(expected, output);
 
     }
 
@@ -128,14 +125,14 @@ public class UtilsTest {
         };
 
         double[][] expected = new double[][] {
-                {(3 * 1) + (5 * 4), (3 * 2) + (5 * 5), (3 * 3) + (5 * 6)},
-                {(5 * 1) + (1 * 4), (5 * 2) + (1 * 5), (5 * 3) + (1 * 6)},
+                {(3 * 1 ) + (5 * 4), (3 * 2)  + (5 * 5), (3 * 3) +  (5 * 6)},
+                {(5 * 1 ) + (1 * 4), (5 * 2)  + (1 * 5), (5 * 3) +  (1 * 6)},
                 {(10 * 1) + (2 * 4), (10 * 2) + (2 * 5), (10 * 3) + (2 * 6)}
         };
 
         double[][] actual = Utils.DotProd(input1, input2);
 
-        MatrixAssert(expected,actual);
+        HelperFunctions.MatrixAssert(expected,actual);
 
     }
 
@@ -160,7 +157,7 @@ public class UtilsTest {
 
         double[] actual = Utils.DotProd(input1, input2);
 
-        VectorAssert(expected,actual);
+        HelperFunctions.VectorAssert(expected,actual);
 
     }
 
