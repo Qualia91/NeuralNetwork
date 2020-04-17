@@ -1,15 +1,15 @@
 package com.nick.wood.neural_network.multi_layered;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Random;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class NetworkTest {
 
     @Test
-    public void networkTestWalkthrough() {
+    public void networkWalkthroughTest() {
 
 
         double[][] trainingInputs = new double[][]{
@@ -59,7 +59,7 @@ public class NetworkTest {
     }
 
     @Test
-    public void networkTestWalkthroughWithRandomStarts() {
+    public void networkWalkthroughWithRandomStartsTest() {
 
 
         double[][] trainingInputs = new double[][]{
@@ -80,7 +80,7 @@ public class NetworkTest {
     }
 
     @Test
-    public void networkTestWalkthroughWithRandomStartsLowerNumberOfNeurons() {
+    public void networkWalkthroughWithRandomStartsLowerNumberOfNeuronsTest() {
 
 
         double[][] trainingInputs = new double[][]{
@@ -101,7 +101,7 @@ public class NetworkTest {
     }
 
     @Test
-    public void networkTestWalkthroughWithRandomStartsAndExtraNeuronsInHiddenLayer() {
+    public void networkWalkthroughWithRandomStartsAndExtraNeuronsInHiddenLayerTest() {
 
 
         double[][] trainingInputs = new double[][]{
@@ -122,7 +122,7 @@ public class NetworkTest {
     }
 
     @Test
-    public void networkTestDifferentTest() {
+    public void networkDifferentTest() {
 
         double[][] trainingInputs = new double[][]{{0.0, 0.0, 1.0},
                 {1.0, 1.0, 1.0},
@@ -134,7 +134,7 @@ public class NetworkTest {
                 {1.0},
                 {0.0}};
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 10; i++) {
 
             double minCost = Double.MAX_VALUE;
             int minCostNoN = Integer.MAX_VALUE;
@@ -170,7 +170,7 @@ public class NetworkTest {
 
 
     @Test
-    public void networkDiffOutputBiggerThanOne() {
+    public void networkDiffOutputBiggerThanOneTest() {
 
         // have to scale them to between. need to play around with other activation functions that don't go from o to 1 like sigmoid
 
@@ -197,7 +197,7 @@ public class NetworkTest {
     }
 
     @Test
-    public void testAddition() {
+    public void additionTest() {
 
         double[][][] testData = createTestData();
         double[][] trainingInputs = testData[0];

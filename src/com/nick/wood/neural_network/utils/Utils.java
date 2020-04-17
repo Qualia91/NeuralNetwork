@@ -219,6 +219,7 @@ public class Utils {
 
     }
 
+    // TODO: need to have this transpose matrixTwo before using it so it implements the dot product correctly
     public static double[][] DotProd(double[][] matrixOne, double[][] matrixTwo) {
 
         double[][] returnMatrix = new double[matrixOne.length][matrixTwo.length];

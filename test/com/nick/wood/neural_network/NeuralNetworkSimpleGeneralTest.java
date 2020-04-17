@@ -1,10 +1,11 @@
 package com.nick.wood.neural_network;
 
 import com.nick.wood.neural_network.simple.NeuralNetworkSimpleGeneral;
+import org.junit.jupiter.api.Test;
 
 public class NeuralNetworkSimpleGeneralTest {
 
-    @org.junit.Test
+    @Test
     public void SimpleTest() {
 
         double[][] trainingInputs = new double[][]{{0.0, 0.0, 1.0},
@@ -22,7 +23,7 @@ public class NeuralNetworkSimpleGeneralTest {
         System.out.println(neuralNetworkSimpleGeneral.evaluate(new double[] {0.0, 0.0, 0.0}));
     }
 
-    @org.junit.Test
+    @Test
     public void SumRowTest() {
 
         double[][] trainingInputs = new double[][]{{0.0, 4.0, 1.0},

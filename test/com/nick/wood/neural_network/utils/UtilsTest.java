@@ -1,8 +1,8 @@
 package com.nick.wood.neural_network.utils;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class UtilsTest {
 
@@ -13,7 +13,7 @@ public class UtilsTest {
 
         double answer = 0.73105857863000487925115924182182;
 
-        assertEquals("Sigmoid Single Digit test", answer, returnValue, 0.000000000001);
+        assertEquals(answer, returnValue, 0.000000000001);
 
     }
 
@@ -28,14 +28,14 @@ public class UtilsTest {
 
         for (int i = 0; i < returnValue.length; i++) {
 
-            assertEquals("Sigmoid Vector test, index " + i, answer[i], returnValue[i], 0.000000000001);
+            assertEquals(answer[i], returnValue[i], 0.000000000001);
 
         }
 
     }
 
     @Test
-    public void transposeMatrix() {
+    public void transposeMatrixTest() {
 
         double[][] input = new double[][] {
                 {1.0, 2.0, 3.0},
@@ -55,7 +55,7 @@ public class UtilsTest {
     }
 
     @Test
-    public void transposeVector() {
+    public void transposeVectorTest() {
 
         double[] input = new double[] {1.0, 2.0, 3.0};
 
@@ -71,7 +71,7 @@ public class UtilsTest {
     }
 
     @Test
-    public void vectorAdd() {
+    public void vectorAddRTest() {
 
         double[] input1 = new double[] {1.0, 2.0, 3.0};
         double[] input2 = new double[] {1.0, 2.0, 3.0};
@@ -84,7 +84,7 @@ public class UtilsTest {
     }
 
     @Test
-    public void matrixAdd() {
+    public void matrixAddTest() {
 
         double[][] input1 = new double[][] {
                 {1.0, 2.0, 3.0},
@@ -120,8 +120,11 @@ public class UtilsTest {
         };
 
         double[][] input2 = new double[][] {
-                {1.0, 2.0, 3.0},
-                {4.0, 5.0, 6.0}
+                {1.0, 4.0},
+                {2.0, 5.0},
+                {3.0, 6.0}
+                //{1.0, 2.0, 3.0},
+                //{4.0, 5.0, 6.0}
         };
 
         double[][] expected = new double[][] {
@@ -137,7 +140,7 @@ public class UtilsTest {
     }
 
     @Test
-    public void dotProdMatrixVector() {
+    public void dotProdMatrixVectorTest() {
 
         double[][] input1 = new double[][] {
                 {3.0, 5.0, 4.0},
@@ -162,10 +165,10 @@ public class UtilsTest {
     }
 
     @Test
-    public void sigmoidDerivative() {
+    public void sigmoidDerivativeTest() {
     }
 
     @Test
-    public void errorWeightedDerivative() {
+    public void errorWeightedDerivativeTest() {
     }
 }
